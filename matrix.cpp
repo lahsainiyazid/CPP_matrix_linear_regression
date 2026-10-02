@@ -23,13 +23,14 @@ class matrix{
    }
  matrix operator+(const matrix &other)const {
     if (rows!=other.rows||cols!=other.cols){
-      throw std::invalid_argument("Rows and cols must match for matrix addition!");
+      throw std::invalid_argument("Matrix rows and cols must match!");
     }
     std::vector<double>vec(vals.size());
     for (size_t i=0;i<vals.size();i++){
         vec[i]=vals[i]+other.vals[i];
     }
   return matrix(rows,cols,vec);}
+ //We do const because methods inside of class have this pointer to object const allows us to put a smart contract forcing it to be a const pointer
    matrix operator - (const matrix &other)const{
      if (rows!=other.rows||cols!=other.cols){
        throw std::invalid_argument("Matrix rows and cols must match!");
@@ -39,7 +40,14 @@ class matrix{
        vec[i]=vals[i]-other.vals[i];
      }
   return matrix(rows,cols,vec);}
-
+  matrix operator *(const double a)const {
+ 
+    std::vector<double>vec(vals.size());
+    for (size_t i=0;i<vals.size();i++){
+      vec[i]=vals[i]*a;
+    }
+    return matrix(rows,cols,vec);
+  }
  };
 int main (){
   std::cout<<"Testing vector class !"<<std::endl;
