@@ -17,10 +17,21 @@ class matrix{
      return vals[r*cols +c ];
    } 
    //Read only of our overload () method: First const so it is read only second const to diferentiate from our first function +object doesnt change in c++ we don't overload by return type!
+   //Here const enforces a read only contract on the obejct calling it
    const double &operator()(size_t r,size_t c)const{
      return vals[r*cols +c];
    }
-};
+ matrix operator+(const matrix &other)const {
+    if (rows!=other.rows||cols!=other.cols){
+      throw std::invalid_argument("Rows and cols must match for matrix addition!");
+    }
+    std::vector<double>vec(vals.size());
+    for (size_t i=0;i<vals.size();i++){
+        vec[i]=vals[i]+other.vals[i];
+    }
+  return matrix(rows,cols,vec);}
+ 
+ };
 int main (){
   std::cout<<"Testing vector class !"<<std::endl;
   return 0;
