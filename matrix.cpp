@@ -74,8 +74,17 @@ class matrix{
       vec[i]=vals[i]-a;
     }
   return matrix(rows,cols,vec);}
-  
+matrix transpose()const {
+  std::vector<double>vec(vals.size());
+  matrix result(cols,rows,vec);
+  for (size_t i=0;i<rows;i++){
+    for (size_t j=0;j<cols;j++){
+      result(j,i)=(*this) (i,j);
+    }
+  }
+return result;} 
 };
+
 int main (){
   std::cout<<"Testing vector class !"<<std::endl;
   return 0;
