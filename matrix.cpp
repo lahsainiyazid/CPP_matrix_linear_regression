@@ -11,7 +11,8 @@ class matrix{
    {if (r*c !=vals.size()){
                             throw std::invalid_argument("rows *cols must match vector size!");
                           }}; 
-    
+   matrix(size_t r,size_t c):
+     rows(r),cols(c),vals(r*c,0){}
    //Read and write overload of our () method!: operator () is a special element allowing us to access elements!
    double &operator()(size_t r,size_t c){
      return vals[r*cols +c ];
