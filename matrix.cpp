@@ -40,15 +40,42 @@ class matrix{
        vec[i]=vals[i]-other.vals[i];
      }
   return matrix(rows,cols,vec);}
+   matrix operator *(const matrix &other)const {
+     if (cols!=other.rows){
+       throw std::invalid_argument("Inner dimensions must match!");
+     }
+     std::vector<double>vec(rows*other.cols);
+     for (size_t i=0;i<rows;i++){
+       for (size_t j=0;j<other.cols;j++){
+         double sum=0.0;
+         for (size_t k=0;k<cols;k++){
+           sum+=(*this) (i,k) * (other) (k,j);
+         }
+       vec[i*other.cols+j]=sum;}
+     }
+   return matrix(rows,other.cols,vec);}
+   //Scalar operations:
   matrix operator *(const double a)const {
- 
     std::vector<double>vec(vals.size());
     for (size_t i=0;i<vals.size();i++){
       vec[i]=vals[i]*a;
     }
     return matrix(rows,cols,vec);
   }
- };
+  matrix operator +(const double a)const{
+    std::vector<double>vec(vals.size());
+    for (size_t i=0;i<vals.size();i++){
+      vec[i]=vals[i]+a;
+    }
+  return matrix(rows,cols,vec);}
+  matrix operator -(const double a)const{
+    std::vector<double>vec(vals.size());
+    for (size_t i=0;i<vals.size();i++){
+      vec[i]=vals[i]-a;
+    }
+  return matrix(rows,cols,vec);}
+  
+};
 int main (){
   std::cout<<"Testing vector class !"<<std::endl;
   return 0;
