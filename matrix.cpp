@@ -50,7 +50,16 @@
      }
    }
  return result;}
-
+  //Transpose:
+  matrix matrix::T()const{
+    std::vector<double>vec(vals.size(),0);
+    matrix result=matrix(cols,rows,vec);
+    for (size_t i=0;i<rows;i++){
+      for (size_t j=0;j<cols;j++){
+        result (j,i)=(*this) (i,j);
+      }
+    }
+  return result;}
 
 
 
