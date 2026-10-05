@@ -35,6 +35,11 @@ if(X_features.cols!=w.rows){
      reg.w=reg.w-(nabla *reg.alpha);
    }
  return reg;}
-
+ matrix predict(const descent_regression &reg){
+   if (reg.X.cols!=reg.w.rows||reg.w.cols!=1||reg.X.rows!=reg.y.rows||reg.y.cols!=1){
+     throw std::invalid_argument("Invalid Shape!");
+   }
+   return reg.X * reg.w;
+ } 
 
 
