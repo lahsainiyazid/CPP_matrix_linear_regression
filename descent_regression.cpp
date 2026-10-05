@@ -4,7 +4,7 @@
 
 
 
-descent_regression::descent_regression(const matrix &X_features,const matrix &y_targets):X(X_features),y(y_targets),w(matrix(X_features.cols,X_features.cols,1,0)),alpha(0.1){
+descent_regression::descent_regression(const matrix &X_features,const matrix &y_targets):X(X_features),y(y_targets),w(matrix(X_features.cols,1)),alpha(0.1){
 if (X_features.rows!=y_targets.rows){
   throw std::invalid_argument("Missing data");
 }
@@ -24,6 +24,4 @@ if(X_features.cols!=w.rows){
 
 
 
-int main (){
-  return 0;
-}
+
