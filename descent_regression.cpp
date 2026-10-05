@@ -21,7 +21,20 @@ if(X_features.cols!=w.rows){
   throw std::invalid_argument("Invalid features/weights/matrix");
 }
 }
-
+ descent_regression& descent_regression::fit(descent_regression &reg,int epochs){
+   if (epochs<=0){
+     throw std::invalid_argument("Number of epochs must be >=1");
+   }
+   if(reg.X.rows<=0){
+     throw std::invalid_argument("Number of rows of X matrix must be>=1");
+   }
+   for (size_t i=0;i<epochs;i++){
+     matrix y_pred=reg.X * reg.w;
+     matrix error=y_pred-reg.y;
+     matrix nabla=reg.X.T() * error*(1.0/reg.X.rows);
+     reg.w=reg.w-(nabla *reg.alpha);
+   }
+ return reg;}
 
 
 

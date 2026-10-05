@@ -36,7 +36,7 @@
     }
  return matrix (rows,cols,vec);}
  //Matrix arithmetic operations on matrix:
- matrix matrix::operator *(matrix &other) const{
+ matrix matrix::operator *(const matrix &other) const{
    if (cols != other.rows ){
      throw std::invalid_argument("Inner dimensions must match!");
    }
@@ -50,6 +50,18 @@
      }
    }
  return result;}
+ matrix matrix::operator -(const matrix &other)const {
+   if (rows!=other.rows){
+     throw std::invalid_argument("Rows sizes must match!");
+   }
+   if (cols !=other.cols){
+     throw std::invalid_argument("Columns sizes must match");
+   }
+   std::vector<double>val(rows*cols,0);
+   for (size_t i=0;i<rows*cols;i++){
+     val[i]=vals[i]-other.vals[i];
+   }
+ return  matrix(rows,cols,val);}
   //Transpose:
   matrix matrix::T()const{
     std::vector<double>vec(vals.size(),0);

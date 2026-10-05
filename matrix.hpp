@@ -14,12 +14,11 @@ class matrix{
     double operator()(size_t r,size_t c) const; //We pass copy to read only +const to ensure that this pointer doesnt change!
     //Scalar operations on our matrix object:
     matrix operator *(double a)const;
-    matrix operator +(double a)const;
-    matrix operator -(double a)const;
+    matrix  operator +(double a)const;
+    matrix  operator -(double a)const;
     //Matrix operations for our matrix object :
-    matrix operator *(matrix &other)const;
-    matrix operator +(matrix &other)const;
-    matrix operator -(matrix &other)const;
+    matrix operator *(const matrix &other)const; 
+    matrix operator -(const matrix &other)const;
     //Transpose matrix:
     matrix T()const;
   
