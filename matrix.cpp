@@ -72,6 +72,23 @@
       }
     }
   return result;}
+  //Mae:
+  double matrix::mae(const matrix &other)const {
+    if (rows!=other.rows||cols!=other.cols||vals.size()==0){
+      throw std::invalid_argument("Invalid shape!");
+    }
+    double sum=0.0;
+    double len=static_cast<double>(vals.size());
+    for (size_t i=0;i<vals.size();i++){
+      double raw=vals[i]-other.vals[i];
+     if (raw<0){
+       raw=-raw;
+     } 
+     sum+=raw;
+    }
+    return sum/len;
+
+  }
 
 
 

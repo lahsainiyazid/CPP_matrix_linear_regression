@@ -21,6 +21,8 @@ class matrix{
     matrix operator -(const matrix &other)const;
     //Transpose matrix:
     matrix T()const;
+    //Mean absolute error:
+    double mae (const matrix &other)const;
   
 };
 
